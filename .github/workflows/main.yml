@@ -1,0 +1,19 @@
+---
+name: "Lint"
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "*"
+jobs:
+  lint:
+    name: "Markdown - Lint"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v4"
+      - uses: "katallaxie/actions/markdown-lint@main"
+        with:
+          args: "--ignore=**/node_modules/**"
+      - uses: "katallaxie/actions/yaml-lint@main"
